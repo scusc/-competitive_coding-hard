@@ -1,0 +1,1309 @@
+n=int(input())
+l1=[]
+l2=[]
+for i in range(n):
+    x=int(input())
+    if(x in l1):
+        l2.append(x)
+    l1.append(x)
+print(l1,l2)
+if (len(l2)==0):
+    print(-1)
+else:
+    print(l2[0])
+-------------------------------------------------------------------------------------
+n=int(input())
+x=n
+k=[]
+while (n>0):
+    a=int(float(n%2))
+    k.append(a)
+    n=(n-a)/2
+k.append(0)
+string=""
+for j in k[::-1]:
+    string=string+str(j)
+print(len(string)-1)
+--------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l1=[]
+for i in range(n):
+    x=int(input())
+    l.append(x)
+summ=int(input())
+for i in range(n):
+    for j in range(n):
+        if l[i]+l[j]==summ :
+            if([l[i],l[j]] not in l1):
+                l1.append([l[i],l[j]])
+print(l1)
+------------------------------------------------------------------------------------------------
+n1=int(input())
+n2=int(input())
+target=int(input())
+l1=[]
+l2=[]
+l3=[]
+l4=[]
+for i in range(n1):
+    x=int(input())
+    l1.append(x)
+for i in range(n2):
+    x=int(input())
+    l2.append(x)
+
+for i in range(n1):
+    for j in range(n2):
+        if l1[i]+l2[j]<=target:
+            l3.append([l1[i],l2[j]])
+print(l3)
+
+for i in range(len(l3)):
+        x=sum(l3[i])
+        l4.append(x)
+print(l4)
+s=l4.index(max(l4))
+print(l3[s])
+-------------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+for i in range(n):
+    x=int(input())
+    l.append(x)
+str1 = ''.join(str(e) for e in l)
+s=int(str1)
+s1=s+1
+l2=str(s1).split(" ")
+l2 = [int(i) for i in l2]
+print(l)
+print(l2)
+-------------------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l2=[]
+for i in range(n):
+   x=int(input())
+   l.append(x)
+for i in range(n):
+    x=l.count(l[i])
+    l2.append(x)
+y=l2.index(max(l2))
+if(l[y]>(n//2)):
+    print("majority is :",l[y])
+else:
+    print("-1")
+-------------------------------------------------------------------------------------------------------------------
+n1=int(input())
+n2=int(input())
+target=int(input())
+l1=[]
+l2=[]
+l3=[]
+for i in range(n1):
+    x=int(input())
+    l1.append(x)
+for i in range(n2):
+    x=int(input())
+    l2.append(x)
+for i in range(n1):
+    for j in range(n2):
+        if(l1[i]+l2[j]==target):
+            l3.append((l1[i],l2[j]))
+            print("true")
+            break
+print(l3)
+if(len(l3)==0):
+    print("false")
+------------------------------------------------------------------------------------------------------------------------
+l1=[[1,2,3],
+    [4,5,6],
+    [7,8,9]]
+l2=[]
+l3=[]
+for i in l1:
+    print(i)
+for i in range(0,len(l1)):
+    for j in range(len(l1)-1,-1,-1):
+        l2.append(l1[j][i])
+print("-------------------")
+for i in range(0,len(l2)-1,i+1):
+    l3.append([l2[i],l2[i+1],l2[i+2]])
+for i in l3:
+    print(i)
+----------------------------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l2=[]
+for i in range(n):
+    x=int(input())
+    l.append(x)
+for i in range(n):
+    for j in range(i+1,len(l)):
+        if(l[j]<l[i]):
+            t=l[i]
+            l[i]=l[j]
+            l[j]=t
+print(l)
+for i in range(n):
+    x=l[i]*l[i]
+    l2.append(x)
+for i in range(n):
+    for j in range(i+1,n):
+        if(l2[j]<l2[i]):
+            t=l2[i]
+            l2[i]=l2[j]
+            l2[j]=t
+print(l2)
+------------------------------------------------------------------------------------------------------------------------------
+l1=[]
+l2=[]
+l3=[]
+n=int(input())
+for i in range(n):
+    l1.append(input())
+l1.sort()
+print(l1)
+for i in range(n):
+    l2.append(len(l1[i]))
+l2.sort()
+print(l2)
+l3.append(l1[0])
+for i in range(n):
+    for j in range(i+1,n):
+        if(l1[i] in l1[j] and not l1[j] in l3 and len(l1[j])>len(l3[i-1])):
+            l3.append(l1[j])
+l3.pop()
+print(l3)
+------------------------------------------------------------------------------------------------------------------------------
+a=input("enter string")
+b=""
+s=""
+count=0
+for i in range(len(a)-1,-1,-1):
+    b=b+a[i]											not properly working 
+if(b==a):
+    print("palindrom")
+else:
+    print("not palindrom")
+l1=a.split(" ")
+l1 = [i for i in l1]
+for i in range(len(a)):
+    if(l1[i]!='a'):
+        l1[i]=chr(ord(a[i])-1)
+        break
+for i in range(len(a)):
+    if(l1[i]=='a'):
+        count=1
+    else:
+        count=0
+        break
+if(count==1):
+    l1[0]='b'
+print("broken palindrom is")
+s=''.join(e for e in l1)
+print(s)
+---------------------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l1=[]
+for i in range(n):
+    l.append(int(input()))
+for i in range(n):
+    if(i==n-1):
+        l1.append([l[i]])
+    elif(l[i]!=l[i+1]):
+        l1.append([l[i],l[i+1]])
+        i=i+2
+    else:
+        l1.append([l[i]])
+print(l1)
+--------------------------------------------------------------------------------------------------------------------
+n=int(input())
+l1=[]
+for i in range(n):
+    l1.append(int(input()))
+s=int(input())
+l2=[[]]
+l3=[]
+l4=[]
+for i in range(n+1):
+    for j in range(i+1,n+1):
+        x=l1[i:j]
+        l2.append(x)
+for i in range(len(l2)):
+    if(sum(l2[i])==s):
+        l3.append(l2[i])
+print(l3)
+for i in range(len(l3)):
+    l4.append(len(l3[i]))
+x=l4.index(max(l4))
+print(l3[x])
+-----------------------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l1=[]
+l2=[]
+for i in range(n):
+    l.append(int(input()))
+for i in range(n):
+    for j in range(i+1,n):
+        if(l[j]<l[i]):
+            t=l[i]
+            l[i]=l[j]
+            l[j]=t
+for i in range(n+1):
+    if(l[i+1]-1==l[i]):
+        l2.append(l[i])
+    else:
+        break
+s=len(l2)
+l2.append(l2[s-1]+1)
+print(l2)
+-----------------------------------------------------------------------------------------------------------------------
+n=int(input())
+l1=[]
+l2=[]
+for i in range(n):
+    x=int(input())
+    l1.append(x)
+for i in range(n):
+    p=1
+    for j in range(n):
+        if(l1[j]!=l1[i]):
+            p=p*l1[j]
+    l2.append(p)
+print(l2)
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+npages=int(input())
+nframes=int(input())
+l=[]
+l2=[0,0,0]
+hit=0
+miss=0
+c=0
+for i in range(npages):
+    l.append(int(input()))
+for i in range(nframes):
+    l2.remove(l2[i])
+    l2.insert(i,l[i])
+    print(l2)
+    miss=miss+1
+for i in range(nframes,npages):
+    if(l[i] in l2):
+        hit=hit+1
+    else:
+        if(c<nframes):
+            l2.remove(l2[c])
+            l2.insert(c,l[i])
+            miss=miss+1
+        c=c+1
+        if(c==nframes):
+            c=0
+    print(l2)
+print(hit)
+print(miss)
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+n=int(input())
+l1=[]
+l2=[]
+l3=[]
+for i in range(n):
+    l1.append(int(input()))
+x=int(input())
+for i in range(n):
+    for j in range(i+1,n):
+        if(l1[j]<l1[i]):
+            t=l1[i]
+            l1[i]=l1[j]
+            l1[j]=t
+print(l1)
+for i in range(n):
+    if(l1[i]==x):
+        l2.append(i)
+    else:
+        pass
+print(l2)
+l3.append((min(l2),max(l2)))
+print(l3)
+------------------------------------------------------------------------------------------------------------------------
+n=int(input("enter no of points"))
+l0=[]
+l=[]
+l1=[]
+l2=[]
+print("enter points")
+for i in range(n):
+    x=int(input())
+    y=int(input())
+    l.append([x,y])
+    l0.append([x,y])
+print(l)
+for i in range(n):
+    for j in range(2):
+        if(l[i][j]<0):
+            l[i][j]=l[i][j]*(-1)
+print("enter no. of points closer")
+k=int(input())
+a=0
+for i in range(n):
+    for j in range(2):
+        a=a+l[i][j]
+    l1.append(a)
+    l2.append(a)
+    a=0
+print(l2)
+print(l1)
+l1.sort()
+print(l1)
+for i in range(k):
+        p=l2.index(l1[i])
+        print(l0[p])
+------------------------------------------------------------------------------------------------------------------
+l1=[i for i in range(1,27)]
+l2=[chr(i) for i in range(97,123)]
+data=dict(zip(l1,l2))
+print(data)
+count=0
+d=int(input())
+l3=list(str(d))
+print(l3)
+for i in range(len(l3)):
+    l3[i]=int(l3[i])
+    if(data[l3[i]]!=None):
+        count+=1
+        print(data[l3[i]])
+if(d<=26):
+    if(data[d]!=None and len(l3)!=1):
+        count+=1
+        print("or",data[d])
+else:
+    pass
+print("total",count-1)
+-------------------------------------------------------------------------------------------------------------------
+s1=input()
+s2=input()
+x1=s1.split()
+x2=s2.split()
+r1="".join(i for i in x1)
+r2="".join(i for i in x2)
+print(r1)
+print(r2)
+count=0
+if(len(r1)==len(r2)):
+    l1=list(r1)
+    l2=list(r2)
+    print(l1,l2)
+    for i in range(len(l1)):
+        for j in range(len(l2)):
+            if(l1[i]==l2[j]):
+                count=1
+                l2[j]=0
+                break
+            else:
+                count=0
+if(count==1):
+    print("anagram")
+else:
+    print("non anagram")
+---------------------------------------------------------------------------------------------------------------------
+n1=int(input("enter no. of frames"))
+n2=int(input("enter no. of pages"))
+l=[]
+l2=[]
+hit=0
+miss=0
+for i in range(n2):
+    l.append(int(input()))
+print(l)
+for i in range(n1):
+    l2.append(l[i])
+    miss+=1
+    print(l2)
+for i in range(n1,n2):
+    if(l[i] in l2):
+        hit+=1
+        for p in range(i):
+            if(l[p]==l[i]):
+                l[p]="q"
+    elif(not l[i] in l2):
+        for j in range(i):
+            if(l[j] in l2):
+                for k in range(n1):
+                    if(l[j+k] in l2):
+                        break
+                else:
+                    continue
+                break
+        x=l2.index(l[j])
+        l2.remove(l[j])
+        l2.insert(x,l[i])
+        miss+=1
+        print(l2)
+print("hits",hit)
+print("miss",miss)
+-------------------------------------------------------------------------------------------------------------------
+s=input()
+l=[]
+l2=[]
+s1=""
+for i in range(len(s)):
+    if(not s[i] in l):
+        l.append(s[i])
+print(l)
+for i in range(len(l)):
+    count=0
+    for j in range(len(s)):
+        if(l[i]==s[j]):
+            count+=1
+    l2.append(count)
+for i in range(len(l2)):
+    for j in range(i,len(l2)):
+        if(l2[j]>=l2[i]):
+            temp1=l2[j]
+            l2[j]=l2[i]
+            l2[i]=temp1
+            temp2=l[j]
+            l[j]=l[i]
+            l[i]=temp2
+for i in l:
+    for j in range(l2[l.index(i)]):
+        s1=s1+"".join(i)
+print(s1)
+------------------------------------------------------------------------------------------------
+s=input()
+l=[]
+for i in range(len(s)):
+    l.append(s[i])
+print(l)								
+for i in range(len(l)-1):					*partially being executed* 
+    if(l[i]==l[i+1]):
+        for j in range(len(l)):
+            if(l[j]!=l[i]):
+                l.insert(i+1,l[j])
+                l.pop(j+1)
+            for k in range(len(l)-1):
+                if(l[i]!=l[j]):
+                    print("no possibilities")
+                    exit()
+                else:pass
+print(l)
+s1="".join(l[i] for i in range(len(l)))
+print(s1)
+----------------------------------------------------------------------------------------------------------------
+n=int(input("enter no. values"))
+l1=[]
+l2=[]
+print("enter values")
+for i in range(n):
+    l1.append(int(input()))
+print("enter indexes")
+for i in range(n):
+    l2.append(int(input()))
+print(l1)
+print(l2)
+for i in range(n):
+    for j in range(i+1,n):
+        if(l1[j]>=l1[i]):
+            t=l1[i]
+            l1[i]=l1[j]
+            l1[j]=t
+            t1=l2[i]
+            l2[i]=l2[j]
+            l2[j]=t1
+print(l1)
+print(l2)
+print("enter no of items of set")
+n1=int(input())
+print("enter limit of same indexs")
+n2=int(input())
+s=0
+l3=[]
+for i in range(n):
+    l4=[]
+    l4.append(l1[i])
+    for j in range(i+1,n):
+        if(l2[i]==l2[j]):
+            l4.append(l1[j])
+            l1[j]=0
+    l1[i]=0											*partial working*
+    l3.append(l4)
+print(l3)
+lr=[]
+for i in range(len(l3)):
+    if(l3[i]!=[0]):
+        lr.append(l3[i])
+print(lr)
+cnt=0
+i=0
+while(i<n1):
+    if(cnt<n2):
+        s=s+lr[i][cnt]
+        cnt+=1
+        i+=1
+    else:
+        cnt=0
+print(s)
+----------------------------------------------------------------------------------------------------------
+n=int(input())
+l1=[]
+l2=[[]]
+for i in range(n):
+    l1.append(int(input()))
+print(l1)
+for i in range(n+1):
+    for j in range(i+1,n+1):
+        x=l1[i:j]
+        l2.append(x)
+print(l2)
+l3=[]
+for i in range(len(l2)):
+    s=0
+    for j in range(len(l2[i])):
+        s=s+l2[i][j]
+    l3.append(s)
+print(l3)
+max=l3[0]
+for i in range(len(l3)):
+    if(l3[i]>max):
+        max=l3[i]
+print(max)
+print(l2[l3.index(max)])
+----------------------------------------------------------------------------------------------------------
+n=int(input("size of list"))
+l=[]
+for i in range(n):
+    l.append(input())
+print(l)
+k=input()
+l2=[]
+for i in range(n):
+    c=0
+    for j in range(len(k)):
+        if(k[j]==l[i][j]):
+            c=1
+        else:
+            c=0
+    if(c==1):
+        l2.append(l[i])
+print(l2)
+-------------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+for i in range(n):
+    l.append(input())
+print(l)
+result=[]
+for i in range(n):
+    s=""
+    for j in range(i+1,n):
+        for k in range(len(l[j])):
+            if(not l[j][k] in s):
+                s=s+l[j]
+                result.append(s)
+print(result)
+j,max=0,len(result[0])
+for i in range(len(result)):
+    if(len(result[i])>max):
+        j,max=i,len(result[i])
+print(max)
+print(result[j])
+------------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+for i in range(n):
+    l.append(int(input()))
+print(l)
+l2=[]
+for i in range(n):
+    x=l[i]
+    c=0
+    for j in range(n):
+        if(j!=i and l[j]==x):
+            c=1
+        else:
+            pass
+    
+    if(c==0):
+        l2.append(l[i])
+        
+print(l2)
+-----------------------------------------------------------------------------------------------------------
+n=input()
+s=0
+while(1):
+    for i in range(len(n)):					need to insert repetitions so it cannot be infinte loop
+        s=s+int(n[i])*int(n[i])
+    if(s==1):
+        print(n)
+        break
+    else:
+        n=str(s)
+        s=0
+        pass
+---------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+for i in range(n):
+    l.append(int(input()))
+print(l)
+l2=[]
+for i in range(n):
+    for j in range(i+1,n+1):
+        l2.append(l[i:j])
+print(l2)
+l3=[]
+for i in range(len(l2)):
+    s=0
+    for j in range(len(l2[i])):
+        s=s+l2[i][j]
+    l3.append(s)
+
+print(l3)
+
+max=l3[0]
+for i in range(1,len(l3)):
+    if(l3[i]>max):
+        max=l3[i]
+x=l3.index(max)
+
+print(l2[x])
+-------------------------------------------------------------------------------------------------------
+s={}
+res=""
+n=int(input())
+for i in range(n):
+    x=input()
+    y=int(input())
+    s.update({x:y})
+print(s)
+l1=list(s.keys())
+l2=list(s.values())
+print(l1)
+print(l2)
+for i in range(n):
+    k=str(l1[i])
+    v=str(l2[i])
+    m1=str(len(k))
+    m2=v[0]
+    for j in range(1,len(v)):
+        if(v[j]>m2 and v[j]<m1):
+            m2=v[j]
+    res=res+k[int(m2)]
+print(res)
+----------------------------------------------------------------------------------------------------
+n=int(input())
+s=str(n)
+l=[]
+for i in range(len(s)):
+    if(i%2==1):
+        l.append(s[i])
+print(l)
+t=""
+for i in range(len(l)):
+    t=t+str(int(l[i])*int(l[i]))
+print(t)
+res=""
+if(len(t)>=4):
+    res=res+t[0:4]
+else:
+    res=res+t
+    while(True):
+        if(len(res)==4):
+            break
+        else:
+            res='0'+res
+print(res) 
+-----------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+for i in range(n):
+    l.append(int(input()))
+print(l)
+count=0
+for i in range(n):
+    if(l[i]==0):
+        count+=1
+        l.remove(l[i])
+        l.append(0)
+print(l)
+print(count)
+------------------------------------------------------------------------------------------------------------------
+s=input()
+l=[]
+for i in range(10):
+    l.append(str(i))
+res=""
+if(s[0]=='-'):
+    res=res+'-'
+for i in range(len(s)):
+    if(s[i] in l):
+        res=res+s[i]
+print(res)
+------------------------------------------------------------------------------------------------------------
+n=int(input())
+while(True):
+    s=0
+    s1=str(n)
+    s2=""
+    res=""
+    for i in range(len(s1)-1,-1,-1):
+        s2=s2+s1[i]
+    s=int(s1)+int(s2)
+    r1=str(s)
+    for i in range(len(r1)-1,-1,-1):
+        res=res+r1[i]
+    if(res==r1):
+        print(res)
+        break
+    else:
+        s1=str(res)
+        pass
+-----------------------------------------------------------------------------------------------------------------
+n=int(input("enter order of matrix"))
+matrix=[]
+srows=0
+scolumns=0
+print("matrix elements : ")
+for i in range(n):
+    x=[]
+    for j in range(n):
+        a=int(input())
+        x.append(a)
+    matrix.append(x)
+print("matrix is : ")
+for i in range(n):
+    for j in range(n):
+        print(matrix[i][j],end="")
+    print()
+trace=0
+for i in range(n):
+    trace=trace+matrix[i][i]
+print("trace : ",trace)
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        for k in range(len(matrix[i])):
+            if(matrix[i][j]==matrix[i][k] and j!=k):
+                srows+=1
+                break
+        else:
+            continue
+        break
+    else:
+        continue
+    continue
+for i in range(len(matrix)):
+    for j in range(len(matrix)):
+        for k in range(len(matrix)):
+            if(matrix[j][i]==matrix[k][i] and j!=k):
+                scolumns+=1
+                break
+        else:
+            continue
+        break
+    else:
+        continue
+    continue
+print("no. of rows with repeated elements : ",srows)
+print("no. of columns with repeated elements : ",scolumns)
+
+if(srows==0 and scolumns==0):
+    print("latin matrix")
+else:
+    print("not a latin matrix")
+-------------------------------------------------------------------------------------------------
+s=input()
+res=""
+n=0
+for i in range(len(s)):
+    x=max(0,int(s[i])-n)
+    for j in range(x):
+        if(j<x):
+            res+="("
+    x=max(0,n-int(s[i]))
+    for k in range(x):
+        if(k<x):
+            res+=")"
+    res+=s[i]
+    n=int(s[i])
+for k in range(n):
+    res+=")"
+print(res)
+------------------------------------------------------------------------------------------------
+n=int(input())
+k=0
+while(k<n):
+    n1=int(input())
+    s=input()
+    l=[]
+    l=s.split(" ")
+    for i in range(n1):
+        l[i]=int(l[i])
+    l.sort()
+    for i in range(n1):
+        if(l[i+1]!=l[i]+1):
+            print(l[i]+1)
+            break
+    k+=1
+----------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l3=[]
+l2=[]
+for i in range(n):
+    l.append(int(input()))
+print(l)
+for i in range(len(l)):
+    for j in range(i+1,len(l)):
+        res=l[j]-l[i]
+        if(res>0):
+            if(len(l2)==0):
+                l2.append(res)
+                l3.append((i,j))
+            else:
+                for k in range(len(l2)):
+                    if(res>0):
+                        t=1
+                    else:
+                        t=0
+                        break
+                if(t==1):
+                    l2.append(res)
+                    l3.append((i,j))
+print(l2)
+print(l3)
+l4=[]
+l5=[]
+for i in range(len(l3)):
+    s=0
+    for j in range(i+1,len(l3)):
+        if(l3[j][0]>l3[i][1] and l3[j][1]>l3[i][1]):
+            s=l2[i]+l2[j]
+        else:
+            l4.append(l2[i])
+            
+        l4.append(s)
+        l5.append((i,j))
+print(l4)
+print(l5)
+print(max(l4))
+--------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l3=[]
+for i in range(n):
+    l.append(input())
+print(l)
+for i in range(n):
+    l2=[]
+    l2.append(l[i])
+    for j in range(i+1,n):
+        t1=[]
+        t2=[]
+        for q in range(len(l[i])):
+            t1.append(l[i][q])
+        for q in range(len(l[j])):
+            t2.append(l[j][q])
+        if(len(t1)==len(t2)):
+            for a in range(len(t1)):
+                for b in range(len(t2)):
+                    if(t1[a]==t2[b]):
+                        c=1
+                        t2[b]='0'
+                        break
+                else:
+                    c=0
+                    break
+        if(c==1):
+            l2.append(l[j])
+        else:
+            pass
+    l3.append(l2)
+    
+print(l3)
+------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l2=[]
+count=0
+for i in range(n):
+    l.append(int(input()))
+print(l)
+for i in range(n):
+    if(not l[i] in l2):
+        l2.append(l[i])
+print(l2)
+for i in range(len(l2)):
+    if(l2[i]+1 in l2):
+        count+=1
+    else:
+        pass
+print(count)
+----------------------------------------------------------------------------
+n=int(input())
+l=[]
+res=[]
+for i in range(n):
+    l.append(input())
+for i in range(n):
+    x=l[i]
+    while(1):
+        x=x.replace(x[x.index("#")-1:x.index("#")+1],"")
+        if(not "#" in x):
+            break
+    res.append(x)
+print(res)
+---------------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+for i in range(n):
+    l.append(int(input()))
+print(l)
+while(1):
+    l.sort()
+    x1=max(l)
+    l.pop()
+    x2=max(l)
+    x3=x1-x2
+    if(x3!=0):
+        l.append(x3)
+    if(len(l)==1):
+        break
+print(l) 
+-------------------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l2=[]
+k=int(input())
+for i in range(n):
+    l.append(int(input()))
+print(l)
+for i in range(n):
+    if(not l[i] in l2):
+        l2.append(l[i])
+        continue
+    else:
+        if(l[i] in l2 and (len(l2)+1)-(l2.index(l[i])<=k)):
+            print(len(l2),",",l2.index(l[i]))
+            print("yes")
+--------------------------------------------------------------------------------------
+n=int(input())
+l=[]
+l2=[]
+for i in range(n):
+    l.append(int(input()))
+l.sort()
+print(l)
+x=0
+for i in range(n):
+    if(i!=x):
+        continue
+    else:
+        start=l[i]
+        stop=l[i]
+        for j in range(i+1,n):
+            if(l[j]==stop+1):
+                stop=l[j]
+                x=j+1
+        l2.append([start,stop])
+print(l2)
+-----------------------------------------------------------------------------------------------------
+***************
+def possibilities(iterable,r):
+        t=tuple(iterable)														
+        n = len(t)
+        if r > n:
+            return
+        positions = list(range(r))
+        yield tuple(t[i] for i in positions)
+        while True:
+            for i in reversed(range(r)):
+                if positions[i] != i + n - r:
+                    break
+            else:
+                return
+            positions[i] += 1
+            for j in range(i+1, r):
+                positions[j] = positions[j-1] + 1
+            yield tuple(t[i] for i in positions)
+def solution(l):
+	l.sort(reverse = True)
+	for i in reversed(range(1, len(l) + 1)):
+		for p in possibilities(l, i):
+			if sum(p) % 3 == 0: return int(''.join(map(str, p)))
+	return 0
+
+print(solution([3,1,4,1,5,9]))
+******************
+---------------------------------------------------------------------------------------------------------
+def possibilities(l,r=None):
+    t=tuple(l)
+    n=len(l)
+    if(r==None):
+        r=n
+    else:
+        r=r
+    if(r>n):
+        return
+    else:
+        positions=list(range(n))
+        nexts=list(range(n,n-r,-1))
+        yield tuple(t[i] for i in positions[:r])
+        while(n):
+            for i in range(r-1,-1,-1):
+                nexts[i]-=1
+                if(nexts[i]==0):
+                    positions[i:]=positions[i+1:]+positions[i:i+1]
+                    nexts[i]=n-i
+                else:
+                    j=nexts[i]
+                    positions[i], positions[-j]=positions[-j],positions[i]
+                    yield tuple(t[i] for i in positions[:r])
+                    break
+            else:
+                return
+
+def sol(l):
+    max=0
+    for i in range(1,len(l)+1):
+        for p in possibilities(l,i):
+            if(len(p)>=1):
+                n1="".join(str(x) for x in p)
+                if(int(n1)%3==0 and n1>max):
+                    max=n1
+    return max
+    
+    
+print(sol([3,1,4,1]))
+------------------------------------------------------------------------------------------------------
+***********************
+from collections import deque
+
+
+N = 8
+blocks = [[(-1,-1) for f in range(0,N)] for i in range(0,N)]
+
+
+def solution(src,dest):
+    a=0
+    l0=[src,dest]
+    matrix=[]
+    l1=[]
+    for i in range(8):
+        x=[]
+        for j in range(8):
+            x.append(a)
+            a+=1
+        matrix.append(x)
+    for k in range(len(l0)):
+        for i in range(8):
+            for j in range(8):
+                if(matrix[i][j]==l0[k]):
+                    l1.append((i,j))
+                    break
+            else:
+                continue
+            break
+        else:
+            continue
+        continue
+    s=l1[0]
+    t=l1[1]
+    q = deque()
+    q.append(s)
+    blocks[s[0]][s[1]] = s 
+    while q:
+        u = q.popleft()
+        if u == t: break
+        for v in paths(u):
+            if blocks[v[0]][v[1]] == (-1,-1):
+                blocks[v[0]][v[1]] = u
+                q.append(v)
+
+    
+    path = [(t)]    
+    while t != s:
+        t = blocks[t[0]][t[1]]
+        path.append(t)
+    
+    return len(path)-1
+
+def paths(u):    
+    p = []
+    for e in [(-2,-1),(-2,1),(2,1),(2,-1),(-1,-2),(1,-2),(-1,2),(1,2)]:        
+        v = (u[0] + e[0], u[1] + e[1])
+        if v[0] >= 0 and v[0] < N and v[1] >= 0 and v[1] < N: p.append(v)
+    return p;
+
+
+print(solution(19,36))
+*****************************************
+-----------------------------------------------------------------------------------------------------
+s=input()
+l=[]
+n=int(input("enter no. of movements"))
+print("enter movements")
+for i in range(n):
+    direct=int(input())
+    amount=int(input())
+    l.append([direct,amount])
+print(l)
+
+for i in range(len(l)):
+    par=l[i]
+    if(par[0]==0):
+        for j in range(par[1]):
+            l2=[]
+            for k in range(len(s)):
+                l2.append(s[k])
+            first=l2[0]
+            l2.pop(0)
+            l2.append(first)
+            s="".join(x for x in l2)
+        print(s)
+    if(par[0]==1):
+        for j in range(par[1]):
+            l=[]
+            for k in range(len(s)):
+                l.append(s[k])
+            last=l[-1]
+            l.pop(len(l)-1)
+            l.insert(0,last)
+            s="".join(x for x in l)
+        print(s)
+--------------------------------------------------------------------------------------------------
+def check(s):
+    n=len(s)
+    balance=0
+    for i in range(n):
+        if(s[i]=="(" or s[i]=="*"):
+            balance+=1
+        elif(--balance==-1):
+            return False
+    balance=0
+    for i in range(n-1,-1,-1):
+        if(s[i]==')' or s[i]=="*"):
+            balance+=1
+        elif(--balance==-1):
+            return False
+    return True
+s=input()
+print(check(s))
+-------------------------------------------------------------------------------------------------------
+class Solution(object):
+    def minPathSum(grid):
+
+        M, N = len(grid), len(grid[0])
+        for i in range(M):
+            grid[i][0] = grid[i][0] + grid[i-1][0] if i > 0 else grid[i][0]
+            for j in range(1,N):
+                grid[i][j] = min(grid[i-1][j], grid[i][j-1]) + grid[i][j] if i > 0 else grid[i][j-1]+grid[i][j]
+        return grid[-1][-1]
+
+print(Solution.minPathSum([[1,3,1],[1,5,1],[4,2,1]]))
+------------------------------------------------------------------------------------------------------------
+l=[int(input()),int(input())]
+print(l)
+start=l[0]
+end=l[1]
+binlist=[]
+for i in list(range(start,end+1)):
+    x=i
+    binlist.append(int(bin(x)[2:]))
+print(binlist)
+m=0
+for i in binlist:
+    x=str(i)
+    if(len(x)>m):
+        m=len(x)
+print(m)
+
+for i in range(len(binlist)):
+    x=str(binlist[i])
+    while(len(x)<m):
+        x="0"+x
+    binlist[i]=x
+
+print(binlist)
+res=""
+for i in range(m):
+    c=1
+    for j in range(len(binlist)):
+        if(binlist[j][i] is '0'):
+            c=0
+            break
+        else:
+            continue
+    if(c==1):
+        res=res+'1'
+    else:
+        res=res+'0'
+print(res)
+print(int(res,2))
+-----------------------------------------------------------------------------------------------
+def sol(nums):
+    if not nums:
+        return False
+    i = 0
+    max_index = nums[i]
+    while i < len(nums) and i <= max_index:
+        new_index = nums[i]+i
+        max_index = max(max_index, new_index)
+        i += 1
+    if i == len(nums):
+        return True
+    else:
+        return False
+
+nums=[3,2,1,0,4]
+print(sol(nums))
+---------------------------------------------------------------------------------------------
+height=int(input())
+width=int(input())
+l=[]
+for i in range(height):
+    s=[]
+    for j in range(width):
+        x=int(input())
+        s.append(x)
+    l.append(s)
+print(l)
+l.insert(0,[0 for i in range(width+1)])
+for i in range(1,height+1):
+    l[i].insert(0,0)
+print(l)
+max=0
+for i in range(1,height+1):
+    for j in range(1,width+1):
+        if(l[i][j]==0):
+            l[i][j]=0
+        else:
+            n1=l[i][j-1]
+            n2=l[i-1][j]
+            n3=l[i-1][j-1]
+            n=min(n1,n2,n3)
+            l[i][j]=n+1
+            if(l[i][j]>max):
+                max=l[i][j]
+print(l)
+print(max)
+
+---------------------------------------------------------------------------------------------------------
+n=int(input())
+extra=int(input())
+l=[]
+for i in range(n):
+    l.append(int(input())) 
+big = max(l)
+result=[]
+for i in range(n):
+    if(l[i]+extra>=big):
+        result.append(True)
+    else:
+        result.append(False)
+print(result)
+----------------------------------------------------------------------------

@@ -1,0 +1,96 @@
+import sys
+sys.setrecursionlimit(1000000000)
+def printAllSubsetsRec(l2, n, v, p):
+    if (p == 0):
+        for value in v:
+            l4.append(value)
+
+        return
+    if (n == 0):
+        return
+    printAllSubsetsRec(l2, n - 1, v, p)
+    v1 = [] + v
+    v1.append(l2[n - 1])
+    printAllSubsetsRec(l2, n - 1, v1, p - l2[n - 1])
+
+
+def printAllSubsets(l2, n, p):
+    v = []
+    printAllSubsetsRec(l2, n, v, p)
+
+
+l1 = []
+l2 = []
+l3 = []
+l4 = []
+s = []
+with open('E:/hsh/inputs/b_small.in', 'r') as f:
+    file = f.readline()
+    l1 = file.split(" ")
+    l1 = [int(i) for i in l1]
+
+    file = f.readline()
+    l2 = file.split(" ")
+    l2 = [int(i) for i in l2]
+l2.sort()
+
+summ = sum(l2)
+summm = summ
+if (l1[0] == summm):
+    for i in range(len(l2)):
+        s.append(l2.index(l2[i]))
+    str1 = ' '.join(str(e) for e in s)
+    print(l1[1])
+    print(str1)
+    exit()
+i = 0
+while (i < l1[1]):
+    if (summ > l1[0]):
+        summ -= l2[i]
+        l3.append(summ)
+        summ = summm
+    else:
+        break
+    i += 1
+
+k = 0
+j = 0
+l3.sort()
+while (k < l1[1]):
+    if (l3[k] <= l1[0]):
+        j += 1
+    else:
+        break
+    k += 1
+
+if (l3[j - 1] <= l1[0]):
+    p = l3[j - 1]
+else:
+    p = l1[0]
+n = l1[1]
+printAllSubsets(l2, n, p)
+u = []
+tot = 0
+count = 0
+for i in range(len(l4) - 1, -1, -1):
+    if (tot != p):
+        tot += l4[i]
+        s.append(l4[i])
+        count += 1
+    else:
+        break
+for i in range(len(s)):
+    for j in range(len(l2)):
+        if(l2[j]==s[i]):
+            u.append(l2.index(s[i]))
+            l2[j] = 'x'
+            break
+u.sort()
+str1 = ' '.join(str(e) for e in u)
+print(count)
+print(str1)
+fi=open('E:/hsh/outputs/b_smalloutput.out', 'a')
+fi.write(str(count))
+fi.write('\n')
+fi.write(str1)
+fi.close()

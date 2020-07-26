@@ -1,0 +1,86 @@
+n=int(input("enter order of matrix"))
+matrix=[]
+srows=0
+scolumns=0
+print("matrix elements : ")
+a=0
+for i in range(n):
+    x=[]
+    for j in range(n):
+        x.append(a)
+        a+=1
+    matrix.append(x)
+print("matrix is : ")
+for i in range(n):
+    for j in range(n):
+        print(matrix[i][j],end="")
+    print()
+n2=int(input())
+n3=int(input())
+l=[n2,n3]
+l2=[]
+for k in range(len(l)):
+    x=l[k]
+    for i in range(n):
+        for j in range(n):
+            if(matrix[i][j]==x):
+                l2.append([i,j])
+                break
+        else:
+            continue
+        break
+
+print(l2)
+
+rowstart=l2[0][0]
+colstart=l2[0][1]
+rowend=l2[1][0]
+colend=l2[1][1]
+print(rowstart, colstart, rowend, colend)
+
+rowdiff=rowstart-rowend
+coldiff=colstart-colend
+
+ul=0
+ur=0
+r=0
+lr=0
+ll=0
+l=0
+
+if(rowdiff%2!=0):
+    print("impossible")
+else:
+    if(rowdiff>=0):
+        while(rowdiff!=0):
+            if(coldiff>=0):
+                ul+=1
+                rowdiff-=2
+                coldiff-=1
+            else:
+                ur+=1
+                rowdiff-=2
+                coldiff+=1
+    else:
+        while(rowdiff!=0):
+            if(coldiff<=0):
+                lr+=1
+                rowdiff+=2
+                coldiff+=1
+            else:
+                ll+=1
+                rowdiff+=2
+                coldiff-=1
+    if(coldiff>0):
+        while(coldiff>0):
+            coldiff-=2
+            l+=1
+    else:
+        while(coldiff<0):
+            coldiff+=2
+            r+=1
+    if(coldiff!=0):
+        print("Impossible")
+        
+    print(ul+ur+r+lr+ll+l)
+    

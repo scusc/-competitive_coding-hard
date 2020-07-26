@@ -1,0 +1,60 @@
+from collections import deque
+
+
+N = 8
+blocks = [[(-1,-1) for f in range(0,N)] for i in range(0,N)]
+
+
+def solution(src,dest):
+    a=0
+    l0=[src,dest]
+    matrix=[]
+    l1=[]
+    for i in range(8):
+        x=[]
+        for j in range(8):
+            x.append(a)
+            a+=1
+        matrix.append(x)
+    for k in range(len(l0)):
+        for i in range(8):
+            for j in range(8):
+                if(matrix[i][j]==l0[k]):
+                    l1.append((i,j))
+                    break
+            else:
+                continue
+            break
+        else:
+            continue
+        continue
+    s=l1[0]
+    t=l1[1]
+    q = deque()
+    q.append(s)
+    blocks[s[0]][s[1]] = s 
+    while q:
+        u = q.popleft()
+        if u == t: break
+        for v in paths(u):
+            if blocks[v[0]][v[1]] == (-1,-1):
+                blocks[v[0]][v[1]] = u
+                q.append(v)
+
+    
+    path = [(t)]    
+    while t != s:
+        t = blocks[t[0]][t[1]]
+        path.append(t)
+    
+    return len(path)-1
+
+def paths(u):    
+    p = []
+    for e in [(-2,-1),(-2,1),(2,1),(2,-1),(-1,-2),(1,-2),(-1,2),(1,2)]:        
+        v = (u[0] + e[0], u[1] + e[1])
+        if v[0] >= 0 and v[0] < N and v[1] >= 0 and v[1] < N: p.append(v)
+    return p;
+
+
+print(solution(19,36))

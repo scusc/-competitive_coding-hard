@@ -1,0 +1,94 @@
+from collections import deque
+capacity = 1
+class Block(object):
+    def __init__(self, x, y, p=0):
+        self.x = x
+        self.y = y
+        self.p = p
+    def __iter__(self):
+        return iter([self.x, self.y])
+    def __hash__(self):
+        return hash(tuple(self))
+    def __eq__(self, block):
+        return self.x == block.x and self.y == block.y
+    def __str__(self):
+        return "({n.x}, {n.y})".format(n=self)
+    def __repr__(self):
+        return self.__str__()
+class path(object):
+    def __init__(self, mtrx, p):
+        self.mtrx = mtrx
+        self.p = p
+        self.w = len(mtrx[0])
+        self.h= len(mtrx)
+        self.moves = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+        self.visited = set()
+        self.distances = {}
+    def is_wall(self, x, y):
+        return self.mtrx[y][x] == 1
+    def surrounds(self, block):
+        for move in self.moves:
+            x, y = list(tuple(u + v for u, v in zip((block.x, block.y), move)))
+            if self.w > x >= 0 and self.h> y >= 0:
+                side = Block(x, y, block.p)
+                if self.is_wall(x, y):
+                    if side.p > 0:
+                        side.p -= 1
+                        yield side
+                else:
+                    yield side
+    def distance(self, start, end):
+        self.distances[start] = 1
+        start.p = self.p
+        queue = deque([])
+        queue.append(start)
+        while queue:
+            presentblock = queue.popleft()
+            self.visited.add(presentblock)
+            if presentblock == end:
+                return self.distances[presentblock]
+            for side in self.surrounds(presentblock):
+                if side not in self.visited:
+                    self.distances[side] = self.distances[presentblock] + 1
+                    queue.append(side)
+        return #float('int')
+def solution(maze):
+    Map = path(maze, p=capacity)
+    startpoint = Block(0, 0)
+    endpoint = Block(Map.w-1, Map.h-1)
+    distance = Map.distance(startpoint, endpoint)
+    return distance
+---------------------------------------------------------------------------------------------------------------------------------------
+def solution(m):
+    w=len(m[0])
+    h=len(m)
+    if(m[0][0]==1 or m[w-1][h-1]==1):
+        return 0
+    def path(x1,y1,m,w,h):
+        map=[[None for i in range(w)]for j in range(h)]
+        map[x1][y1]=1
+        l=[(x1,y1)]
+        while(l):
+            x,y=l.pop(0)
+            moves=[[1,0],[-1,0],[0,1],[0,-1]]
+            for i in moves:
+                x2,y2=x+i[0],y+i[1]
+                if(0<=x2<h and 0<=y2<h and map[x2][y2]==None):
+                    map[x2][y2]=map[x][y]+1
+                    if(m[x2][y2]==1):
+                        continue
+                    l.append((x2,y2))
+        return map
+    topbottom=path(0,0,m,w,h)
+    bottomtop=path(w-1,h-1,m,w,h)
+    map=[]
+    solution=2**32-1
+    for i in range(h):
+        for j in range(w):
+            if(topbottom[i][j] and bottomtop[i][j]):
+                solution=min(topbottom[i][j]+bottomtop[i][j]-1,solution)
+    return(solution)
+m=[[0, 1, 1, 0], [0, 0, 0, 1], [1, 1, 0, 0], [1, 1, 1, 0]]
+print(solution(m))
+
+---------------------------------------------------------------------------------------------------------------------------------

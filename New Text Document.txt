@@ -1,0 +1,41 @@
+line1=input()
+l1=line1.split(" ")
+l1 = [int(i) for i in l1]
+line2=input()
+l2=line2.split(" ")
+l2 = [int(i) for i in l2]
+l3=[]
+l2.sort()
+summ=sum(l2)
+summm=summ
+i=0
+while(i<l1[1]):
+    if(summ>l1[0]):
+        summ-=l2[i]
+        l3.append(summ)
+        summ=summm
+    else:
+        break
+    i+=1
+k=0
+j=0
+l3.sort()
+while(k<l1[1]):
+    if(l3[k]<=l1[0]):
+        j+=1
+    else:
+        break
+    k+=1
+p=summm-l3[j-1]
+q=l2.index(p)
+count=0
+for i in range(l1[1]):
+    if(i!=q):
+        count+=1
+print(count)
+s=[]
+for i in range(l1[1]):
+    if(i!=q):
+        s.append(i)
+str1 = ' '.join(str(e) for e in s)
+print(str1)

@@ -1,0 +1,70 @@
+def printAllSubsetsRec(l2, n, v, p) :
+    if (p == 0) : 
+        for value in v :
+            
+            l4.append(value)
+        
+        return
+    if (n == 0): 
+        return
+    printAllSubsetsRec(l2, n - 1, v, p) 
+    v1 = [] + v 
+    v1.append(l2[n - 1]) 
+    printAllSubsetsRec(l2, n - 1, v1, p - l2[n - 1]) 
+def printAllSubsets(l2, n, p): 
+    v = [] 
+    printAllSubsetsRec(l2, n, v, p) 
+l1=[]
+l2=[]
+l3=[]
+l4=[]
+s=[]
+line1=input()
+l1=line1.split(" ")
+l1 = [int(i) for i in l1]
+line2=input()
+l2=line2.split(" ")
+l2 = [int(i) for i in l2]
+l2.sort()
+
+summ=sum(l2)
+summm=summ
+i=0
+while(i<l1[1]):
+    if(summ>l1[0]):
+        summ-=l2[i]
+        l3.append(summ)
+        summ=summm
+    else:
+        break
+    i+=1
+
+k=0
+j=0
+l3.sort()
+while(k<l1[1]):
+    if(l3[k]<=l1[0]):
+        j+=1
+    else:
+        break
+    k+=1
+
+if(l3[j-1]<=l1[0]):
+    p=l3[j-1]
+else:
+    p=l1[0]
+n=l1[1]
+printAllSubsets(l2, n, p) 
+
+tot=0
+count =0
+for i in range(len(l4)-1,-1,-1):
+    if(tot!=p):
+        tot+=l4[i]
+        s.append(l2.index(l4[i]))
+        count+=1
+    else:
+        break
+str1 = ' '.join(str(e) for e in s)
+print(count)
+print(str1)

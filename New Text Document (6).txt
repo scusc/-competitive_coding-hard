@@ -1,0 +1,63 @@
+maintiming=[[9.00,10.30],[12.00,13.00],[16.00,18.00]]
+mainschedule=[9.00,20.00]
+mytiming =[[10.00,11.30],[12.30,14.30],[14.30,15.00],[16.00,17.00]]
+myschedule=[10.00,18.30]
+needtime=0.30
+freemain=[]
+freemy=[]
+m1=[]
+m2=[]
+for i in range(len(maintiming)):
+    for j in range(len(maintiming[0])):
+        m1.append(maintiming[i][j])
+for i in range(len(mytiming)):
+    for j in range(len(mytiming[0])):
+        m2.append(mytiming[i][j])
+print("maintiming   ",m1)
+print("mytiming   ",m2)
+maintimingstart=[]
+mytimingstart=[]
+maintimingend=[]
+mytimingend=[]
+for i in range(len(m1)):
+    if i%2==1:
+        maintimingstart.append(m1[i-1])
+        maintimingend.append(m1[i])
+for i in range(len(m2)):
+    if i%2==1:
+        mytimingstart.append(m2[i-1])
+        mytimingend.append(m2[i])
+maintimingstart.append(0)
+mytimingstart.append(0)
+print("maintimingstart   ",maintimingstart)
+print("maintimingend   ",maintimingend)
+print("mytimingstart   ",mytimingstart) 
+print("mytimingend   ",mytimingend) 
+for i in range(len(maintimingend)):
+    if maintimingend[i] - maintimingstart[i+1]<=needtime and maintimingend[i] - maintimingstart[i+1]!=0:
+        freemain.append(maintimingend[i])
+        freemain.append(maintimingstart[i+1])
+print(freemain)
+for i in range(len(mytimingend)):
+    if mytimingend[i] - mytimingstart[i+1]<=needtime and mytimingend[i] - mytimingstart[i+1]!=0:
+        freemy.append(mytimingend[i])
+        freemy.append(mytimingstart[i+1])
+print(freemy)
+available=[]
+for i in range(len(freemain)):
+    for j in range(i):
+        if  freemain[i] - freemy[j]>=needtime and freemain.index(freemain[i])%2==1 and freemain[i]<=freemy[j+1]:
+            available.append([freemy[j],freemain[i]])
+print(available)
+if max(m1)>max(m2):
+    a=max(m1)
+    b=max(m2)
+else:
+    a=max(m2)
+    b=max(m1)
+print(a,b)
+if a!=mainschedule[1] and  b<mainschedule[1] and a-b>=needtime:
+    available.append([a,b])
+print(available)
+
+

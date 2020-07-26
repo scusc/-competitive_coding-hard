@@ -1,0 +1,39 @@
+def possibilities(l,r=None):
+    t=tuple(l)
+    n=len(l)
+    if(r==None):
+        r=n
+    else:
+        r=r
+    if(r>n):
+        return
+    else:
+        positions=list(range(n))
+        nexts=list(range(n,n-r,-1))
+        yield tuple(t[i] for i in positions[:r])
+        while(n):
+            for i in range(r-1,-1,-1):
+                nexts[i]-=1
+                if(nexts[i]==0):
+                    positions[i:]=positions[i+1:]+positions[i:i+1]
+                    nexts[i]=n-i
+                else:
+                    j=nexts[i]
+                    positions[i], positions[-j]=positions[-j],positions[i]
+                    yield tuple(t[i] for i in positions[:r])
+                    break
+            else:
+                return
+
+def sol(l):
+    max=0
+    for i in range(1,len(l)+1):
+        for p in possibilities(l,i):
+            if(len(p)>=1):
+                n1="".join(str(x) for x in p)
+                if(int(n1)%3==0 and n1>max):
+                    max=n1
+    return max
+    
+    
+print(sol([3,1,4,1]))

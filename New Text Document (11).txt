@@ -1,0 +1,21 @@
+from collections import deque
+def solution(m):
+    h,w=len(m), len(m[0])
+    q=deque([(0, 0, 1, True)])
+    m[0][0]=-1
+    while q:
+        x,y,step,wall=q.popleft()
+        moves=[(x+1,y), (x-1,y), (x,y+1), (x,y-1)]
+        for x1, y1 in moves:
+            if (not(0<=x1<h and 0<=y1<w)or(m[x1][y1]==-1)or m[x1][y1]==-2 and not wall or m[x1][y1]==1 and not wall): 
+                continue
+            if(m[x1][y1]==1):
+                q.append((x1,y1,step+1,False))
+            if(m[x1][y1] in [0,-2]):
+                q.append((x1,y1,step+1,wall))
+            if(wall==True):
+                m[x1][y1]=-1
+            else:
+                m[x1][y1]=-2
+            if(x==h-1 and y==w-2 or x==h-2 and y==w-1):
+                return step+1
